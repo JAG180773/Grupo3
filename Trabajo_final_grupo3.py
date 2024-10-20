@@ -11,7 +11,7 @@ from datetime import time
 import datetime
 import streamlit as st
 
-st.title('Mi Primer Proyecto')
+st.title('Grupo # 3 - Trabajo Final Grupal 2024 - 2')
 st.write('Hola **como** estas')
 appointment = st.slider(label = 'Programe Horario de asesoria',
                         value= (time(11,30), time(12,45)))
