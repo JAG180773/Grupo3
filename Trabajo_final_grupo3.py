@@ -12,5 +12,5 @@ import datetime
 import streamlit as st
 
 st.title('Grupo # 3 - Trabajo Final Grupal 2024 - 2')
-st.write('Se creo el Servidor de la Pagina Web')
+st.write('Se creo el Servidor de la Pagina Web hoy 5/11')
 
