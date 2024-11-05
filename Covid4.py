@@ -3,7 +3,7 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium
 import numpy as np
-
+source /home/adminuser/venv/bin/activate
 # Carga de datos
 df = pd.read_csv("TB_CENTRO_VACUNACION.csv", sep=";")
 df.to_csv("data.csv", sep=",")
