@@ -138,7 +138,7 @@ folium.Marker([latitud, longitud], popup=centro_seleccionado).add_to(mapa)
 # Mostrar el mapa en Streamlit
 st_folium(mapa, width=1500, height=500)
 plt.figure(figsize=(10, 6))
-plt.title("Total de Poblacion de Acuerdo Asignada de acuerdo al Ubigeo")
+plt.title("Total de Poblacion Asignada de acuerdo al Ubigeo")
 sns.barplot(x='Edad_Anio', y='Cantidad', data=df_inei_by, errorbar=None, hue='Sexo')
 st.pyplot(plt)
 st.caption(ubigeo_reniec)
