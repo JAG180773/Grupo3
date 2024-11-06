@@ -118,7 +118,6 @@ ubigeo_reniec=df3[(df3['region'] == region_seleccionada) &
                         (df3['distrito'] == distrito_seleccionado)]['ubigeo_reniec'].values[0]
 df_inei_by = df_inei[df_inei['ubigeo_reniec'] == ubigeo_reniec]
 df_inei_by = df_inei_by.sort_values(by='Edad_Anio')
-#sns.barplot(x='Edad_Anio', y='Cantidad', data=df_inei_by, errorbar=None, hue='Sexo')
 # Selector para elegir el centro de vacunación basado en el distrito seleccionado
 centro_seleccionado = st.sidebar.selectbox("Seleccione el centro de vacunación", options=sorted(centros_filtrados))
 
@@ -139,6 +138,7 @@ folium.Marker([latitud, longitud], popup=centro_seleccionado).add_to(mapa)
 # Mostrar el mapa en Streamlit
 st_folium(mapa, width=1500, height=500)
 plt.figure(figsize=(10, 6))
+plt.title("Total de Poblacion de Acuerdo Asignada de acuerdo al Ubigeo")
 sns.barplot(x='Edad_Anio', y='Cantidad', data=df_inei_by, errorbar=None, hue='Sexo')
 st.pyplot(plt)
 st.caption(ubigeo_reniec)
@@ -148,4 +148,4 @@ st.markdown(f"""
         <h3 style="color: #264653; text-align: center;">Entidad Administradora: {entidad_administra}</h3>
     </div>
     """, unsafe_allow_html=True)
-st.title("En este centro de vacunacion se tiene")
+#st.title("En este centro de vacunacion se tiene")
