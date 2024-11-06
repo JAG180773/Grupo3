@@ -8,12 +8,13 @@ df = pd.read_csv("TB_CENTRO_VACUNACION.csv", sep=";")
 df.to_csv("data.csv", sep=",")
 df1 = df.copy()
 df1.rename(columns={'nombre': 'Centro_vacunacion'}, inplace=True)
-df1.drop(['id_centro_vacunacion', 'id_eess'], axis=1, inplace=True)
+#df1.drop(['id_centro_vacunacion', 'id_eess'], axis=1, inplace=True)
+df1.drop(['id_eess'], axis=1, inplace=True)
 df1.replace('', np.nan, inplace=True)
 df1['entidad_administra'] = df1['entidad_administra'].fillna('No especificado')
 df_ubigeo = pd.read_csv("TB_UBIGEOS.csv", sep=";")
 df_ubigeo.to_csv("ubigeo.csv", sep=",")
-df_ub = df_ubigeo[['id_ubigeo', 'provincia', 'distrito', 'region']]
+df_ub = df_ubigeo[['id_ubigeo', 'provincia', 'distrito', 'region','ubigeo_inei','ubigeo_reniec']]
 df3 = pd.merge(df1, df_ub, on='id_ubigeo', how='left')
 
 # CSS para personalizar estilo
@@ -39,7 +40,12 @@ st.markdown("""
 
 # Configuración de título
 st.title("Dashboard de Centros de Vacunación")
-
+st.header("This is the header")
+st.markdown("This is the markdown")
+st.subheader("This is the subheader")
+st.caption("This is the caption")
+st.code("x = 2021")
+st.latex(r''' a+a r^1+a r^2+a r^3 ''')
 # Mover los selectores a una barra lateral
 st.sidebar.title("Filtros")
 region_seleccionada = st.sidebar.selectbox("Seleccione la región", options=sorted(df3['region'].unique()))
@@ -74,7 +80,7 @@ mapa = folium.Map(location=[latitud, longitud], zoom_start=15)
 folium.Marker([latitud, longitud], popup=centro_seleccionado).add_to(mapa)
 
 # Mostrar el mapa en Streamlit
-st_folium(mapa, width=700, height=500)
+st_folium(mapa, width=1500, height=500)
 
 # Mostrar el nombre de la entidad administradora
 st.markdown(f"""
@@ -82,3 +88,4 @@ st.markdown(f"""
         <h3 style="color: #264653; text-align: center;">Entidad Administradora: {entidad_administra}</h3>
     </div>
     """, unsafe_allow_html=True)
+st.title("En este centro de vacunacion se tiene")
